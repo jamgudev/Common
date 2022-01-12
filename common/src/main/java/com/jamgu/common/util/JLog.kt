@@ -40,7 +40,7 @@ object JLog {
     fun d(tag: String?, msg: String?) {
         msg ?: return
 
-        if (LOG_LEVEL.level >= 4 && LOG_ENABLE) Log.v(tag, msg)
+        if (LOG_LEVEL.level >= 4 && LOG_ENABLE) Log.d(tag, msg)
     }
 
     @JvmStatic
