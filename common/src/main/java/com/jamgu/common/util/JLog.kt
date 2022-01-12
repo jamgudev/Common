@@ -7,8 +7,6 @@ import android.util.Log
  */
 object JLog {
 
-    private const val LOG_DEFAULT_TAG = "JAM-GU"
-
     /**
      * 日志打印级别，默认打印 v 级别以上的日志
      */
@@ -32,40 +30,40 @@ object JLog {
     }
 
     @JvmStatic
-    fun v(tag: String? = LOG_DEFAULT_TAG, msg: String?) {
+    fun v(tag: String?, msg: String?) {
         msg ?: return
 
         if (LOG_LEVEL.level >= 5 && LOG_ENABLE) Log.v(tag, msg)
     }
 
     @JvmStatic
-    fun d(tag: String? = LOG_DEFAULT_TAG, msg: String?) {
+    fun d(tag: String?, msg: String?) {
         msg ?: return
 
         if (LOG_LEVEL.level >= 4 && LOG_ENABLE) Log.v(tag, msg)
     }
 
     @JvmStatic
-    fun i(tag: String? = LOG_DEFAULT_TAG, msg: String?) {
+    fun i(tag: String?, msg: String?) {
         msg ?: return
 
         if (LOG_LEVEL.level >= 3 && LOG_ENABLE) Log.i(tag, msg)
     }
 
     @JvmStatic
-    fun w(tag: String? = LOG_DEFAULT_TAG, msg: String?) {
+    fun w(tag: String?, msg: String?) {
         msg ?: return
 
         if (LOG_LEVEL.level >= 2 && LOG_ENABLE) Log.w(tag, msg)
     }
 
     @JvmStatic
-    fun e(tag: String? = LOG_DEFAULT_TAG, msg: String?) {
+    fun e(tag: String?, msg: String?) {
         e(tag, msg, null)
     }
 
     @JvmStatic
-    fun e(tag: String? = LOG_DEFAULT_TAG, msg: String?, throwable: Throwable?) {
+    fun e(tag: String?, msg: String?, throwable: Throwable?) {
         if (msg == null) return
 
         if (LOG_LEVEL.level >= 1 && LOG_ENABLE) {
