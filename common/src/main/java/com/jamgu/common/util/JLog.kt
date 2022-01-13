@@ -52,9 +52,20 @@ object JLog {
 
     @JvmStatic
     fun w(tag: String?, msg: String?) {
+        w(tag, msg, null)
+    }
+
+    @JvmStatic
+    fun w(tag: String?, msg: String?, throwable: Throwable?) {
         msg ?: return
 
-        if (LOG_LEVEL.level >= 2 && LOG_ENABLE) Log.w(tag, msg)
+        if (LOG_LEVEL.level >= 2 && LOG_ENABLE) {
+            if (throwable != null) {
+                Log.w(tag, msg, throwable)
+            } else {
+                Log.w(tag, msg)
+            }
+        }
     }
 
     @JvmStatic
