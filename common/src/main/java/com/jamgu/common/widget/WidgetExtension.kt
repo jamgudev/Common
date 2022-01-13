@@ -1,6 +1,8 @@
 package com.jamgu.base.widget
 
 import android.content.Context
+import android.view.WindowInsets
+import androidx.appcompat.app.AppCompatActivity
 
 /**
  * Created by jamgu on 2022/01/12
@@ -81,4 +83,34 @@ fun getScreenDensity(context: Context?): Float {
 fun getScreenScaledDensity(context: Context?): Float {
     context ?: return 0F
     return context.resources.displayMetrics.scaledDensity
+}
+
+/**
+ * 获取屏幕宽度，兼容 API 30
+ */
+fun getScreenWidth(context: AppCompatActivity?): Int {
+    context ?: return 0
+    return if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+        val width = context.windowManager.currentWindowMetrics.bounds.width()
+        val systemInsets = context.windowManager.currentWindowMetrics.windowInsets
+                .getInsetsIgnoringVisibility(WindowInsets.Type.systemBars())
+        width - systemInsets.left - systemInsets.right
+    } else {
+        context.resources.displayMetrics.widthPixels
+    }
+}
+
+/**
+ * 获取屏幕高度，兼容 API 30
+ */
+fun getScreenHeight(context: AppCompatActivity?): Int {
+    context ?: return 0
+    return if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+        val height = context.windowManager.currentWindowMetrics.bounds.height()
+        val systemInsets = context.windowManager.currentWindowMetrics.windowInsets
+                .getInsetsIgnoringVisibility(WindowInsets.Type.systemBars())
+        height - systemInsets.top - systemInsets.bottom
+    } else {
+        context.resources.displayMetrics.heightPixels
+    }
 }
