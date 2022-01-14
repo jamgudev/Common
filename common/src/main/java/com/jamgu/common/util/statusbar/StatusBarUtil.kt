@@ -30,7 +30,7 @@ object StatusBarUtil {
      * 获取机型当前的状态栏高度
      */
     fun getStatusBarHeight(): Int {
-        val context: Context = Common.instance.getApplicationContext()
+        val context: Context = Common.getInstance().getApplicationContext()
         var height = 0
         val resId = context.resources.getIdentifier("status_bar_height", "dimen", "android")
         if (resId != 0) {

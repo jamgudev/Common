@@ -8,9 +8,20 @@ import android.content.Context
  */
 @SuppressLint("StaticFieldLeak")
 class Common private constructor(){
+    private var flag = false
+
+    // 防止反射破坏单例
+    init {
+        if (!flag) {
+            flag = true
+        } else {
+            throw Throwable("SingleTon is being attacked.")
+        }
+    }
 
     companion object {
-        val instance = CommonSingletonHolder.holder
+        @JvmStatic
+        fun getInstance() = CommonSingletonHolder.holder
     }
 
     private lateinit var sContext: Context
