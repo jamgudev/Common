@@ -8,7 +8,6 @@ import android.content.Context
  */
 @SuppressLint("StaticFieldLeak")
 class Common private constructor(){
-    private var flag = false
 
     // 防止反射破坏单例
     init {
@@ -20,6 +19,8 @@ class Common private constructor(){
     }
 
     companion object {
+        private var flag = false
+
         @JvmStatic
         fun getInstance() = CommonSingletonHolder.holder
     }
