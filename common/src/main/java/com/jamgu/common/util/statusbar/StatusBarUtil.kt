@@ -122,21 +122,8 @@ object StatusBarUtil {
     /**
      * 修改状态栏模式
      */
-    fun setStatusBarMode(activity: Activity?, isDark: Boolean?) {
-        var dark = isDark ?: return
-        if (RomUtils.isOppo()) {
-            // oppo 要反过来写。
-            dark = !dark
-        }
-        if (RomUtils.isMIUI()) {
-            // miui 要反过来写。
-            dark = !dark
-        }
-        setStatusBarModeInner(activity, dark)
-    }
-
     @Suppress("DEPRECATION")
-    private fun setStatusBarModeInner(activity: Activity?, isDark: Boolean?) {
+    fun setStatusBarMode(activity: Activity?, isDark: Boolean?) {
         if (activity == null || isDark == null) return
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !RomUtils.isMIUI()) {
@@ -276,7 +263,9 @@ object StatusBarUtil {
                                 View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
                                         View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
                         } else {
-                            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
+                            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            window.statusBarColor = Common.getInstance().getApplicationContext()
+                                    .resources.getColor(R.color.transparent)
                         }
                     }
                 } catch (e: Throwable) {
