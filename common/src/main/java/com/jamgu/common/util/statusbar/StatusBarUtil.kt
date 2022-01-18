@@ -11,7 +11,6 @@ import android.view.ViewGroup.MarginLayoutParams
 import android.view.Window
 import android.view.WindowManager
 import com.jamgu.base.util.JLog
-import com.jamgu.common.Common
 import com.jamgu.common.R
 import com.jamgu.common.util.rom.RomUtils
 import java.lang.reflect.Field
@@ -29,8 +28,9 @@ object StatusBarUtil {
     /**
      * 获取机型当前的状态栏高度
      */
-    fun getStatusBarHeight(): Int {
-        val context: Context = Common.getInstance().getApplicationContext()
+    fun getStatusBarHeight(context: Context?): Int {
+        context ?: return -1
+
         var height = 0
         val resId = context.resources.getIdentifier("status_bar_height", "dimen", "android")
         if (resId != 0) {
@@ -54,7 +54,7 @@ object StatusBarUtil {
         val definedStatusBarHeight = context.resources
                 .getDimensionPixelSize(R.dimen.base_status_bar_height)
         // 通过系统api取到的值
-        val apiStatusBarHeight = getStatusBarHeight()
+        val apiStatusBarHeight = getStatusBarHeight(context)
         if (definedStatusBarHeight != 0 && definedStatusBarHeight != apiStatusBarHeight) {
             if (isBarInView == true && null != titleView?.layoutParams) {
                 val layoutParams = titleView.layoutParams
@@ -81,7 +81,7 @@ object StatusBarUtil {
         val definedStatusBarHeight = context.resources
                 .getDimensionPixelSize(R.dimen.base_status_bar_height)
         // 通过系统api取到的值
-        val apiStatusBarHeight = getStatusBarHeight()
+        val apiStatusBarHeight = getStatusBarHeight(context)
         return definedStatusBarHeight != 0 && definedStatusBarHeight != apiStatusBarHeight
     }
 
@@ -142,7 +142,7 @@ object StatusBarUtil {
         } else {
             when {
                 RomUtils.isMIUI() -> {
-                    MIUIStatusBarHelper.setMIUIStatusBarMode(activity.window, isDark)
+                    MIUIStatusBarHelper.setMIUIStatusBarMode(activity, isDark)
                 }
                 RomUtils.isFlyme() -> {
                     MeiZuStatusBarHelper.setFlymeStatusBarMode(activity.window, isDark)
@@ -242,7 +242,8 @@ object StatusBarUtil {
          * @return          执行成功返回 true
          */
         @Suppress("DEPRECATION")
-        fun setMIUIStatusBarMode(window: Window?, dark: Boolean?): Boolean {
+        fun setMIUIStatusBarMode(activity: Activity?, dark: Boolean?): Boolean {
+            val window = activity?.window
             var result = false
             if (window != null) {
                 val clazz: Class<*> = window.javaClass
@@ -264,8 +265,7 @@ object StatusBarUtil {
                                         View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
                         } else {
                             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                            window.statusBarColor = Common.getInstance().getApplicationContext()
-                                    .resources.getColor(R.color.transparent)
+                            window.statusBarColor = activity.resources.getColor(R.color.transparent)
                         }
                     }
                 } catch (e: Throwable) {
