@@ -193,6 +193,10 @@ public class ThreadPool {
 
     }
 
+    public static boolean isMainThread() {
+        return Looper.getMainLooper() == Looper.myLooper();
+    }
+
     public String toString() {
         return "ThreadPool { corePoolSize:" + this.coreSize + " maxPoolSize:" + this.maxSize + " mExecutor=" + this.mExecutor + '}';
     }
