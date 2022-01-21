@@ -13,6 +13,7 @@
     <!--百分比:45%  HEX: 73            百分比:100%  HEX: FF-->
     <!--百分比:50%  HEX: 80-->
     <color name="transparent">#00000000</color>
+    <color name="semitransparent">#80000000</color>
     <color name="C1">#555555</color>
     <color name="C1_alpha_50">#80555555</color>
     <color name="C2">#808080</color>

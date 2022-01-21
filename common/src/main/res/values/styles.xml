@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="transparent_dialog" parent="Theme.AppCompat.Dialog">
+        <!-- 窗口是否有边框 -->
+        <item name="android:windowFrame">@null</item>
+        <!-- 窗口是否无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 窗口背景颜色 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 窗口是否浮动 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 窗口内容区域的是否有前景遮盖 -->
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- 窗口背景是否加上黑色蒙层 -->
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+</resources>
