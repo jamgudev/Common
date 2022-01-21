@@ -1,4 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--text size-->
+    <dimen name="TO">20dp</dimen>
+    <dimen name="T1">18dp</dimen>
+    <dimen name="T2">16dp</dimen>
+    <dimen name="T3">14dp</dimen>
+    <dimen name="T4">12dp</dimen>
+    <dimen name="T5">11dp</dimen>
+    <dimen name="T6">9dp</dimen>
+    <dimen name="T7">24dp</dimen>
+
+    <dimen name="D0">16dp</dimen>
+    <dimen name="D1">12dp</dimen>
+    <dimen name="D2">8dp</dimen>
+    <dimen name="D3">4dp</dimen>
+    <dimen name="D4">2dp</dimen>
+
+
+    <dimen name="std_hori_margin">16dp</dimen>
+    <dimen name="std_line_height">1px</dimen>
+
+    <!--通用字体大小标注 Start-->
+    <dimen name="t0">24dp</dimen>
+    <dimen name="t1">18dp</dimen>
+    <dimen name="t2">16dp</dimen>
+    <dimen name="t3">15dp</dimen>
+    <dimen name="t4">14dp</dimen>
+    <dimen name="t5">12dp</dimen>
+    <dimen name="t6">11dp</dimen>
+    <dimen name="t7">10dp</dimen>
+    <!--通用字体大小标注 End-->
+
+
+    <!--通用间隔标注 Start-->
+    <dimen name="d0">16dp</dimen>
+    <dimen name="d1">12dp</dimen>
+    <dimen name="d2">8dp</dimen>
+    <dimen name="d3">4dp</dimen>
+    <!--通用间隔标注 End-->
+
+
+    <!-- 新的全局字体大小，规则：dp = px / 2-->
+    <dimen name="n_textsize_160px">80dp</dimen>
+    <dimen name="n_textsize_46px">23dp</dimen>
+    <dimen name="n_textsize_40px">20dp</dimen>
+    <dimen name="n_textsize_37px">18.5dp</dimen>
+    <dimen name="n_textsize_36px">18dp</dimen>
+    <dimen name="n_textsize_35px">17.5dp</dimen>
+    <dimen name="n_textsize_34px">17dp</dimen>
+    <dimen name="n_textsize_33px">16.5dp</dimen>
+    <dimen name="n_textsize_32px">16dp</dimen>
+    <dimen name="n_textsize_31px">15.5dp</dimen>
+    <dimen name="n_textsize_30px">15dp</dimen>
+    <dimen name="n_textsize_29px">14.5dp</dimen>
+    <dimen name="n_textsize_28px">14dp</dimen>
+    <dimen name="n_textsize_27px">13.5dp</dimen>
+    <dimen name="n_textsize_26px">13dp</dimen>
+    <dimen name="n_textsize_24px">12dp</dimen>
+    <dimen name="n_textsize_23px">11.5dp</dimen>
+    <dimen name="n_textsize_22px">11dp</dimen>
+    <dimen name="n_textsize_21px">10.5dp</dimen>
+    <dimen name="n_textsize_20px">10dp</dimen>
+    <dimen name="n_textsize_19px">9.5dp</dimen>
+    <dimen name="n_textsize_18px">9dp</dimen>
+    <dimen name="n_textsize_17px">8.5dp</dimen>
+    <dimen name="n_textsize_16px">8dp</dimen>
+    <dimen name="n_textsize_15px">7.5dp</dimen>
+    <dimen name="n_textsize_14px">7dp</dimen>
+    <dimen name="n_textsize_13px">6.5dp</dimen>
+    <dimen name="n_textsize_12px">6dp</dimen>
+
+    <dimen name="textsize_37px">25sp</dimen>
+    <dimen name="textsize_36px">24sp</dimen>
+    <dimen name="textsize_35px">23.5sp</dimen>
+    <dimen name="textsize_34px">23sp</dimen>
+    <dimen name="textsize_33px">22sp</dimen>
+    <dimen name="textsize_32px">21.5sp</dimen>
+    <dimen name="textsize_31px">21sp</dimen>
+    <dimen name="textsize_30px">20sp</dimen>
+    <dimen name="textsize_29px">19sp</dimen>
+    <dimen name="textsize_28px">18sp</dimen>
+    <dimen name="textsize_27px">17.5sp</dimen>
+    <dimen name="textsize_26px">17sp</dimen>
+    <dimen name="textsize_24px">16sp</dimen>
+    <dimen name="textsize_23px">15.3sp</dimen>
+    <dimen name="textsize_22px">14.6sp</dimen>
+    <dimen name="textsize_21px">14sp</dimen>
+    <dimen name="textsize_20px">13.3sp</dimen>
+    <dimen name="textsize_19px">12.6sp</dimen>
+    <dimen name="textsize_18px">12.0sp</dimen>
+    <dimen name="textsize_17px">11.3sp</dimen>
+    <dimen name="textsize_16px">10.6sp</dimen>
+    <dimen name="textsize_15px">10.0sp</dimen>
+    <dimen name="textsize_14px">9.3sp</dimen>
+    <dimen name="textsize_13px">8.6sp</dimen>
+    <dimen name="textsize_12px">8sp</dimen>
+
+    <dimen name="textsize_12sp">12sp</dimen>
+    <dimen name="textsize_13sp">13sp</dimen>
+    <dimen name="textsize_15sp">15sp</dimen>
+
+    <!--通用标题栏字体大小-->
+    <dimen name="common_title_size">18dp</dimen>
+    <dimen name="common_subtitle_size">14dp</dimen>
+    <dimen name="common_margin_left">12dp</dimen>
+
+    <dimen name="T30">10dp</dimen>
+    <dimen name="T36">12dp</dimen>
+    <dimen name="T42">14dp</dimen>
+    <dimen name="T48">16dp</dimen>
+    <dimen name="T54">18dp</dimen>
+    <dimen name="T60">20dp</dimen>
+
+
+    <dimen name="text_size_1">21dp</dimen>
+    <dimen name="text_size_2">17dp</dimen>
+    <dimen name="text_size_3">16dp</dimen>
+    <dimen name="text_size_4">15dp</dimen>
+    <dimen name="text_size_5">14dp</dimen>
+    <dimen name="text_size_6">13dp</dimen>
+    <dimen name="text_size_7">12dp</dimen>
+    <dimen name="text_size_8">10dp</dimen>
+    <dimen name="text_size_9">9dp</dimen>
+
+    <!-- 角色切换字体大小 用于换肤 -->
+    <dimen name="role_switch_text_size">@dimen/t4</dimen>
+
+    <dimen name="video_play_size">27dp</dimen>
+    <dimen name="video_comment_name_text_size">@dimen/t4</dimen>
+
     <dimen name="base_status_bar_height">25dp</dimen>
+
 </resources>

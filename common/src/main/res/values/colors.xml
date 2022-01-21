@@ -1,5 +1,247 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="semitransparent">#80000000</color>
+    <!--Alpha对应表：-->
+    <!--百分比:0%  HEX: 00             百分比:55%  HEX: 8C-->
+    <!--百分比:5%  HEX: D0             百分比:60%  HEX: 99-->
+    <!--百分比:10%  HEX: 1A            百分比:65%  HEX: A6-->
+    <!--百分比:15%  HEX: 26            百分比:70%  HEX: B3-->
+    <!--百分比:20%  HEX: 33            百分比:75%  HEX: BF-->
+    <!--百分比:25%  HEX: 40            百分比:80%  HEX: CC-->
+    <!--百分比:30%  HEX: 4D            百分比:85%  HEX: D9-->
+    <!--百分比:35%  HEX: 59            百分比:90%  HEX: E6-->
+    <!--百分比:40%  HEX: 66            百分比:95%  HEX: F2-->
+    <!--百分比:45%  HEX: 73            百分比:100%  HEX: FF-->
+    <!--百分比:50%  HEX: 80-->
     <color name="transparent">#00000000</color>
+    <color name="C1">#555555</color>
+    <color name="C1_alpha_50">#80555555</color>
+    <color name="C2">#808080</color>
+    <color name="C3">#e8e8e8</color>
+    <color name="C4">#d98500</color>
+    <color name="C5">#f5f5f5</color>
+    <color name="C6">#a06200</color>
+    <color name="C7">#eaa943</color>
+    <color name="C8">#666666</color>
+    <color name="C9">#9e9e9e</color>
+    <color name="C10">#ffffff</color>
+    <color name="C10_alpha_20">#33ffffff</color>
+    <color name="C10_alpha_80">#ccffffff</color>
+    <color name="C11">#000000</color>
+    <color name="C11_alpha_60">#99000000</color>
+    <color name="C11_alpha_80">#cc000000</color>
+    <color name="C12">#e65343</color>
+    <color name="C13">#efefef</color>
+    <color name="C14">#202020</color>
+    <color name="C15">#1a1a1a</color>
+    <color name="C16">#2e2e2e</color>
+    <color name="C17">#272727</color>
+    <color name="C18">#fff3d2</color>
+    <color name="C19">#191919</color>
+    <color name="C20">#fa9d15</color>
+    <color name="C21">#202020</color>
+    <color name="C21_alpha_80">#cc202020</color>
+    <color name="C22">#8cb413</color>
+    <color name="C22_alpha_80">#cc8cb413</color>
+    <color name="C23">#8b6ac6</color>
+    <color name="C23_alpha_80">#cc8b6ac6</color>
+    <color name="C24">#d84e4e</color>
+    <color name="C25">#108ed7</color>
+
+    <color name="C26">#32a518</color>
+    <color name="C27">#a0a0a0</color>
+    <color name="C28">#1C1C1C</color>
+    <color name="C29">#D3D3D3</color>
+    <color name="C30">#2B2B2B</color>
+    <color name="std_line_color">#e6e6e6</color>
+
+
+    <color name="c0">#f0f2f5</color>
+    <color name="c0_alpha_20">#33f5f3f0</color>
+    <color name="c1">#ffffff</color>
+    <color name="c1_alpha_10">#1Affffff</color>
+    <color name="c1_alpha_20">#33ffffff</color>
+    <color name="c1_alpha_30">#4dffffff</color>
+    <color name="c1_alpha_50">#80ffffff</color>
+    <color name="c1_alpha_60">#99ffffff</color>
+    <color name="c1_alpha_90">#e5ffffff</color>
+    <color name="c1_alpha_03">#08ffffff</color>
+    <color name="c1_alpha_85">#d8ffffff</color>
+    <color name="c1_alpha_70">#b3ffffff</color>
+    <color name="c1_alpha_46">#75FFFFFF</color>
+    <color name="c2">#c88c51</color>
+    <color name="c22">#301c1715</color>
+    <color name="c2_cf">#feac2e</color>
+    <color name="c2_0">#e8c489</color>
+    <color name="c2_press">#b3c88c51</color>
+    <color name="c2_alpha_10">#1ac88c51</color>
+    <color name="c2_alpha_20">#33c88c51</color>
+    <color name="c2_alpha_70">#b3c88c51</color>
+    <color name="c2_alpha_80">#ccc88c51</color>
+    <color name="c3">#333333</color>
+    <color name="c3_alpha_10">#1a333333</color>
+    <color name="c3_alpha_20">#33333333</color>
+    <color name="c3_alpha_16">#10333333</color>
+    <color name="c3_alpha_98">#fa333333</color>
+    <color name="c4">#999999</color>
+    <color name="c4_alpha_10">#1f9a9a9a</color>
+    <color name="c4_alpha_80">#cc9a9a9a</color>
+    <color name="c4_alpha_90">#e59a9a9a</color>
+    <color name="c5">#cdcdcd</color>
+    <color name="c6">#f5f5f5</color>
+    <color name="c6_alpha_20">#33f5f5f5</color>
+    <color name="c6_alpha_50">#80f5f5f5</color>
+    <color name="c7">#dddddd</color>
+    <color name="c8">#477cd1</color>
+    <color name="c9">#ec6020</color>
+    <color name="c10">#62b900</color>
+    <color name="c10_alpha_10">#1a569a29</color>
+    <color name="c10_alpha_20">#33569a29</color>
+    <color name="c11">#314c83</color>
+    <color name="c12">#f460ac</color>
+    <color name="c13">#1e2840</color>
+    <color name="c13_alpha_80">#CC1e2840</color>
+    <color name="c14">#ebebeb</color>
+    <color name="c14_alpha_70">#b3ebebeb</color>
+    <color name="c15">#00a5e0</color>
+    <color name="c15_press">#b300a5e0</color>
+    <color name="c15_alpha_80">#cc00a5e0</color>
+    <color name="c16">#f74c31</color>
+    <color name="c17">#f6eedf</color>
+    <color name="c18">#232323</color>
+    <color name="c19">#1A1A1A</color>
+    <color name="c20">#2A2A2A</color>
+    <color name="c21">#F9F7F4</color>
+    <color name="c23">#c4d0e3</color>
+    <color name="c24">#f5baa8</color>
+    <color name="c25">#aad1b9</color>
+    <color name="c26">#cccccc</color>
+    <color name="c27">#ff3192ff</color>
+    <color name="c28">#f6b42a</color>
+    <color name="c29">#6c7276</color>
+    <color name="c30">#e2aa00</color>
+    <color name="c31">#333333</color>
+    <color name="c31_alpha_50">#80333333</color>
+    <color name="c32">#bdbdbd</color>
+    <color name="c33">#8d8d94</color>
+    <color name="c34">#e6e9ea</color>
+    <color name="c35">#1e1e1e</color>
+    <color name="c36">#272727</color>
+    <color name="c37">#f25f42</color>
+    <color name="c38">#54c11e</color>
+    <color name="c39">#d9dde0</color>
+    <color name="c40">#e6e8e0</color>
+    <color name="c41">#eff2f5</color>
+    <color name="c42">#ededed</color>
+    <color name="c43">#eeeeee</color>
+    <color name="c44">#3d95f8</color>
+    <color name="c45">#9a9a9a</color>
+
+    <color name="c_9769ff">#9769FF</color>
+    <color name="c_309cff">#309cff</color>
+    <color name="c_ececec">#ececec</color>
+    <color name="c_999999">@color/c4</color>
+    <color name="c_fefefe">#fefefe</color>
+    <color name="c_4c4c4c">#4c4c4c</color>
+    <color name="c_110d1b_alpha_90">#e5110d1b</color>
+    <color name="c_2a4b63">#2a4b63</color>
+    <color name="c_5581a0">#5581a0</color>
+    <color name="c_17181c_alpha_64">#a217181c</color>
+    <color name="c_2a79c4">#2a79c4</color>
+    <color name="c_black_alpha_64">#a2000000</color>
+    <color name="c_common_bg_90">#1b2e3e</color>
+    <color name="c_f3f0eb">#f3f0eb</color>
+    <color name="c_f0f1f5">#f0f1f5</color>
+    <color name="c_dcdde0">#dcdde0</color>
+
+    <color name="indicator_text_unselected">@color/c4</color>
+
+    <!-- 通用 标注颜色 Start-->
+
+    <color name="red">#d43232</color>
+    <color name="white">@color/c1</color>
+    <color name="black">#000000</color>
+    <color name="orange">#f95a08</color>
+
+    <color name="C100">#fafafa</color>
+    <color name="C101">#1d3451</color>
+    <color name="C102">#051e3e</color>
+    <color name="C103">#1897c1</color>
+    <color name="C104">#2dc4d2</color>
+    <color name="C105">#0d79a3</color>
+    <color name="C106">#687590</color>
+    <color name="C106_alpha15">#26687590</color>
+    <color name="C106_alpha30">#4d687590</color>
+    <color name="C107">#aab3c4</color>
+    <color name="C107_alpha70">#B3aab3c4</color>
+    <color name="C108">#f0f3f7</color>
+    <color name="C109">#e4eaf2</color>
+    <color name="C110">#d2d8e0</color>
+    <color name="C110_alpha80">#ccd2d8e0</color>
+    <color name="C111">#55b865</color>
+    <color name="C112">#bbc0ca</color>
+    <color name="C113">#e8ebec</color>
+    <color name="C114">#075f7d</color>
+    <!--<color name="C103_60">#991897c1</color>-->
+    <color name="C115">#ef5946</color>
+    <color name="C116">#bf3e4c</color>
+    <color name="C117">#50b553</color>
+    <color name="C118">#079b76</color>
+    <color name="C121">#F9F7F4</color>
+    <color name="C122">#a59980</color>
+    <color name="divide_line_color">#d2d8e0</color>
+    <color name="text_normal_black">#3e3d3d</color>
+    <color name="common_color_6">#e8e8e8</color><!-- 分割线  背景色 放到framwork中-->
+    <color name="common_color_2">#808080</color><!-- 辅助信息 -->
+    <color name="common_color_9">#d3d3d3</color><!--浅灰色2 灰色线框，常用在不可点按钮和下拉选项的线框色-->
+
+    <color name="C103_60">#991897c1</color>
+
+    <color name="white_gray">#FDFDFD</color>
+
+    <color name="black90">#e6000000</color>
+    <color name="black80">#99000000</color>
+    <color name="black70">#b2000000</color>
+    <color name="black65">#a6000000</color>
+    <color name="black50">#88000000</color>
+    <color name="black40">#50000000</color>
+    <color name="white10">#19FFFFFF</color>
+    <color name="white20">#33FFFFFF</color>
+    <color name="white80">#99FFFFFF</color>
+    <color name="white60">#99FFFFFF</color>
+    <color name="white35">#59FFFFFF</color>
+    <color name="gray">#ff999999</color>
+
+    <!--文字类-->
+    <color name="c_a9a9a9">#a9a9a9</color> <!--浅灰，数字，时间-->
+    <color name="c_575757">#575757</color> <!--深灰，描述-->
+    <color name="c_0e0e0e">#0e0e0e</color> <!--黑色，标题，正文-->
+    <!--色块类-->
+    <color name="c_f2f2f2">#f2f2f2</color> <!--浅浅灰，分割线-->
+    <color name="c_f3f3f3">#f3f3f3</color> <!--浅浅灰，分割线-->
+    <color name="c_f6f6f6">#f6f6f6</color> <!--浅浅灰，背景-->
+    <color name="c_e0e0e0">#e0e0e0</color> <!--系统消息-->
+
+
+
+    <!--其他-->
+    <color name="c_b6d9ff">#b6d9ff</color>
+    <color name="c_2b2b2e">#2b2b2e</color>
+    <color name="c_2b2b2d">#2b2b2d</color>
+    <color name="c_bfbfbf">#bfbfbf</color>
+
+
+    <!-- 黑色带透明度色值 (%)-->
+    <color name="black_0">#00000000</color>
+    <color name="black_10">#19000000</color>
+    <color name="black_15">#26000000</color>
+    <color name="black_20">#33000000</color>
+    <color name="black_50">#7f000000</color>
+    <color name="black_65">#a6000000</color>
+    <color name="black_70">#b2000000</color>
+    <color name="black_80">#cc000000</color>
+    <color name="black_4">#0a000000</color>
+
+    <!-- 角色切换字体颜色 用于换肤 -->
+    <color name="role_switch_text_color">@color/c3</color>
+
 </resources>
