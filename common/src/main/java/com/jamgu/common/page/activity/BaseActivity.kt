@@ -1,10 +1,5 @@
 package com.jamgu.common.page.activity
 
-import android.graphics.Color
-import android.os.Bundle
-import android.view.View
-import android.widget.ProgressBar
-import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.jamgu.base.util.JLog
@@ -27,15 +22,6 @@ open class BaseActivity: AppCompatActivity() {
         private const val EXIT_TIME_STAMP = 2000L
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val progressBar = ProgressBar(this)
-        progressBar.id = View.generateViewId()
-        progressBar.setBackgroundColor(Color.GRAY)
-        val progressBarLp: RelativeLayout.LayoutParams = RelativeLayout.LayoutParams(200, 200)
-        progressBar.layoutParams = progressBarLp
-    }
-
     @JvmOverloads
     protected fun showProgress(msg: String?, loadingDrawableId: Int? = null) {
         if (mDialog == null) {
@@ -56,7 +42,7 @@ open class BaseActivity: AppCompatActivity() {
     }
 
     protected fun hideProgress() {
-        mDialog?.hide()
+        mDialog?.dismiss()
     }
 
     @JvmOverloads
@@ -64,14 +50,24 @@ open class BaseActivity: AppCompatActivity() {
         JToast.showToast(this, msg, showLength)
     }
 
+    /**
+     * 用户退出是否需要两次返回，默认不需要
+     */
+    open fun isBackPressedNeedConfirm() = false
+
     override fun onBackPressed() {
-        JLog.d(TAG, "onBackPressed() called.")
-        val now = System.currentTimeMillis()
-        if (mLastBackPressTime > 0 && now - mLastBackPressTime < EXIT_TIME_STAMP) {
-            super.onBackPressed()
+        if (isBackPressedNeedConfirm()) {
+            JLog.d(TAG, "onBackPressed() called.")
+            val now = System.currentTimeMillis()
+            if (mLastBackPressTime > 0 && now - mLastBackPressTime < EXIT_TIME_STAMP) {
+                super.onBackPressed()
+            } else {
+                showToast("再次点击退出")
+                mLastBackPressTime = System.currentTimeMillis()
+            }
         } else {
-            showToast("再次点击退出")
-            mLastBackPressTime = System.currentTimeMillis()
+            super.onBackPressed()
         }
+
     }
 }
