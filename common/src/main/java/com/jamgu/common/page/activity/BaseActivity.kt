@@ -2,7 +2,7 @@ package com.jamgu.common.page.activity
 
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.jamgu.base.util.JLog
+import com.jamgu.common.util.log.JLog
 import com.jamgu.common.widget.dialog.CommonProgressDialog
 import com.jamgu.common.widget.toast.JToast
 

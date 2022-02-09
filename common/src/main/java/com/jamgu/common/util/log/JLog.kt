@@ -1,4 +1,4 @@
-package com.jamgu.base.util
+package com.jamgu.common.util.log
 
 import android.util.Log
 

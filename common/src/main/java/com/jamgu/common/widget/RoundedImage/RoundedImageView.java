@@ -9,13 +9,12 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
-import androidx.appcompat.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.util.Log;
-
-import com.jamgu.base.util.JLog;
+import androidx.appcompat.widget.AppCompatImageView;
 import com.jamgu.base.widget.WidgetExtensionKt;
 import com.jamgu.common.R;
+import com.jamgu.common.util.log.JLog;
 
 @SuppressWarnings("UnusedDeclaration")
 public class RoundedImageView extends AppCompatImageView {

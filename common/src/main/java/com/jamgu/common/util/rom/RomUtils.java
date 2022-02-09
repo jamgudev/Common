@@ -2,7 +2,7 @@ package com.jamgu.common.util.rom;
 
 import android.os.Build;
 import android.view.WindowManager;
-import com.jamgu.base.util.JLog;
+import com.jamgu.common.util.log.JLog;
 import java.lang.reflect.Field;
 
 /**

@@ -10,7 +10,7 @@ import android.view.View
 import android.view.ViewGroup.MarginLayoutParams
 import android.view.Window
 import android.view.WindowManager
-import com.jamgu.base.util.JLog
+import com.jamgu.common.util.log.JLog
 import com.jamgu.common.R
 import com.jamgu.common.util.rom.RomUtils
 import java.lang.reflect.Field
