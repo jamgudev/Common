@@ -1,5 +1,6 @@
 package com.jamgu.common.page.activity
 
+import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.jamgu.common.util.log.JLog
@@ -22,8 +23,46 @@ open class BaseActivity: AppCompatActivity() {
         private const val EXIT_TIME_STAMP = 2000L
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        initWindow()
+        super.onCreate(savedInstanceState)
+
+        if (intent.extras == null || checkArgs(intent.extras!!)) {
+            onSetContentView(savedInstanceState)
+            initWidget()
+            initData()
+        } else {
+            finish()
+        }
+    }
+
+    /**
+     * 可在此初始化控件
+     */
+    protected open fun initWidget() {}
+
+    /**
+     * 可在此初始化数据
+     */
+    protected open fun initData() {}
+
+    /**
+     * 在此设置布局
+     */
+    protected open fun onSetContentView(savedInstanceState: Bundle?) {}
+
+    /**
+     * 在此检查入口参数，若返回false，页面可能直接退出，具体@see [onCreate]
+     */
+    protected open fun checkArgs(extras: Bundle) = true
+
+    /**
+     * 可在此设置window属性
+     */
+    protected open fun initWindow() {}
+
     @JvmOverloads
-    protected fun showProgress(msg: String?, loadingDrawableId: Int? = null) {
+    fun showProgress(msg: String?, loadingDrawableId: Int? = null) {
         if (mDialog == null) {
             mDialog = if (loadingDrawableId == null) {
                 CommonProgressDialog.show(this, msg)
@@ -41,7 +80,7 @@ open class BaseActivity: AppCompatActivity() {
         }
     }
 
-    protected fun hideProgress() {
+    fun hideProgress() {
         mDialog?.dismiss()
     }
 

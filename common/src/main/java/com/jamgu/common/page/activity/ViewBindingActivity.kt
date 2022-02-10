@@ -1,7 +1,6 @@
 package com.jamgu.common.page.activity
 
 import android.os.Bundle
-import androidx.annotation.CallSuper
 import androidx.viewbinding.ViewBinding
 
 /**
@@ -13,9 +12,7 @@ abstract class ViewBindingActivity<T: ViewBinding>: BaseActivity() {
 
     protected lateinit var mBinding : T
 
-    @CallSuper
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onSetContentView(savedInstanceState: Bundle?) {
         mBinding = getViewBinding()
         setContentView(mBinding.root)
     }
