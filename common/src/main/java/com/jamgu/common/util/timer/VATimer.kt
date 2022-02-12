@@ -8,7 +8,7 @@ import android.os.Process
 import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 
-private const val ONE_SECOND = 1000
+// private const val ONE_SECOND = 1000
 private const val DEFAULT_EXECUTION_TIMES_IN_SINGLE_LOOP = 4
 
 /**
@@ -106,10 +106,9 @@ class VATimer {
             addUpdateListener {
                 val curVal = it.animatedValue
                 if (curVal is Int) {
-//                    JLog.d("VATimer", "curVal = $curVal, lastVal = $lastVal")
                     if ((isFirstRunInSingleLoop && passedTime == 0)
                             || (curVal - internal) >= lastVal
-                            || (curVal < lastVal) && (passedTime + curVal == internal)) {
+                            || (curVal < lastVal) && (passedTime + curVal >= internal)) {
                         /*
                         timer 在所有循环即将结束时，会比mExecutionTimesInSingleLoop多执行一次，
                         因此用executionTimesInSingleLoop变量控制
@@ -147,7 +146,7 @@ class VATimer {
             })
 
             interpolator = LinearInterpolator()
-            duration = mRepeatLength * ONE_SECOND * 1L
+            duration = mRepeatLength * 1L
             repeatCount = mTotalRepeatCount
             start()
         }
@@ -158,7 +157,7 @@ class VATimer {
      * 任务完成时记得调用 [stop] 停止，否则timer会一直运行下去
      *
      * @param mission 计时器要运行的任务，在子线程运行, 参数Int为mission已经执行的次数
-     * @param internal 每次mission执行的时间间隔，单位为s
+     * @param internal 每次mission执行的时间间隔，单位为ms
      */
     @JvmOverloads
     fun run(mission: (Int) -> Unit, internal: Int = 1) {
@@ -201,7 +200,6 @@ class VATimer {
         return internal * mExecutionTimesInSingleLoop
     }
 }
-
 internal open class SimpleAnimatorListener: Animator.AnimatorListener {
 
     override fun onAnimationStart(animation: Animator?) {
