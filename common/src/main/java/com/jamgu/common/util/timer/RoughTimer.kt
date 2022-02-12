@@ -49,4 +49,12 @@ class RoughTimer(private val looper: Looper) {
         mHandler = null
     }
 
+    /**
+     * 不用时记得调用此方法，终止looper
+     */
+    fun release() {
+        close()
+        looper.quit()
+    }
+
 }

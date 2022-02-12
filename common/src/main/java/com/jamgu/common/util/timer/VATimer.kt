@@ -2,11 +2,13 @@ package com.jamgu.common.util.timer
 
 import android.animation.Animator
 import android.animation.ValueAnimator
-import android.annotation.SuppressLint
+import android.os.Handler
+import android.os.HandlerThread
+import android.os.Process
 import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 
-private const val ONE_SECOND = 1000L
+private const val ONE_SECOND = 1000
 private const val DEFAULT_EXECUTION_TIMES_IN_SINGLE_LOOP = 4
 
 /**
@@ -16,6 +18,12 @@ private const val DEFAULT_EXECUTION_TIMES_IN_SINGLE_LOOP = 4
  */
 class VATimer {
     private var mTimer: ValueAnimator ? = null
+    private var mHandlerThread: HandlerThread = HandlerThread("va_timer_thread",
+        Process.THREAD_PRIORITY_BACKGROUND)
+
+    init {
+        mHandlerThread.start()
+    }
 
     /**
      * 设置计时器结束时的监听，只会在计时器最后一次重复运行结束时调用
@@ -84,23 +92,15 @@ class VATimer {
         mOnRepeatListener = onEnd
     }
 
-    /**
-     * 运行计时器，多次调用start会从头开始
-     * @param mission 计时器要运行的任务
-     * @param internal 每次mission执行的时间间隔，单位为s
-     */
-    @SuppressLint("SimpleDateFormat")
-    @JvmOverloads
-    fun start(mission: () -> Unit, internal: Int = 1) {
-        stop()
-        // 计算单次循环的执行总时长
-        mRepeatLength = internal * mExecutionTimesInSingleLoop
+    private fun start(mission: (Int) -> Unit, internal: Int) {
+        mRepeatLength = computeRepeatLength(internal)
 
         mTimer = ValueAnimator.ofInt(0, mRepeatLength)
 
         mTimer?.apply {
             var lastVal = 0
             var passedTime = 0
+            var executionTimes = 0
             var isFirstRunInSingleLoop = true
             var executionTimesInSingleLoop = 0
             addUpdateListener {
@@ -115,7 +115,8 @@ class VATimer {
                         因此用executionTimesInSingleLoop变量控制
                          */
                         if (executionTimesInSingleLoop < mExecutionTimesInSingleLoop) {
-                            mission.invoke()
+                            executionTimes++
+                            mission.invoke(executionTimes)
                             executionTimesInSingleLoop++
                         }
                         lastVal = curVal
@@ -129,8 +130,6 @@ class VATimer {
                             mRepeatLength + curVal - lastVal
                         }
                     }
-
-                    if (lastVal < 0) lastVal = curVal
                 }
             }
 
@@ -148,28 +147,58 @@ class VATimer {
             })
 
             interpolator = LinearInterpolator()
-            duration = mRepeatLength * ONE_SECOND
+            duration = mRepeatLength * ONE_SECOND * 1L
             repeatCount = mTotalRepeatCount
             start()
         }
-
-
     }
 
     /**
-     * 停止 Timer
-     * 回收资源，释放内存，停止正在运行的Timer
+     * 运行计时器，每次调用start都会从头开始
+     * 任务完成时记得调用 [stop] 停止，否则timer会一直运行下去
+     *
+     * @param mission 计时器要运行的任务，在子线程运行, 参数Int为mission已经执行的次数
+     * @param internal 每次mission执行的时间间隔，单位为s
+     */
+    @JvmOverloads
+    fun run(mission: (Int) -> Unit, internal: Int = 1) {
+        mHandlerThread.let {
+            Handler(it.looper).post {
+                stop()
+                start(mission, internal)
+            }
+        }
+    }
+
+    /**
+     * 停止正在运行的Timer
      */
     fun stop() {
         mTimer?.let {
             if (it.isRunning)
                 it.pause()
             it.removeAllUpdateListeners()
+            it.removeAllListeners()
         }
         mTimer = null
         mCurrentRepeatCount = 0
         mOnEndListener = null
         mOnRepeatListener = null
+    }
+
+    /**
+     * 不用时记得调用此方法，终止looper
+     */
+    fun release() {
+        stop()
+        mHandlerThread.quit()
+    }
+
+    /**
+     * 计算单次循环的执行总时长
+     */
+    private fun computeRepeatLength(internal: Int): Int {
+        return internal * mExecutionTimesInSingleLoop
     }
 }
 
