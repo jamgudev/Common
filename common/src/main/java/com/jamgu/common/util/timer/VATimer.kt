@@ -169,6 +169,12 @@ class VATimer {
         }
     }
 
+    fun isRunning(): Boolean = mTimer?.isRunning ?: false
+
+    fun isStarted(): Boolean = mTimer?.isStarted ?: false
+
+    fun isStopped(): Boolean = mTimer?.isPaused ?: true
+
     /**
      * 停止正在运行的Timer
      */
