@@ -1,5 +1,6 @@
 package com.jamgu.common.page.activity
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -13,7 +14,7 @@ import com.jamgu.common.widget.toast.JToast
  *
  * 最基础的 Activity，封装了 loading progress, toast, 两次返回点击监听
  */
-open class BaseActivity: AppCompatActivity() {
+open class BaseActivity : AppCompatActivity() {
 
     private var mLastBackPressTime = -1L
     private var mDialog: CommonProgressDialog? = null
@@ -61,6 +62,9 @@ open class BaseActivity: AppCompatActivity() {
      */
     protected open fun initWindow() {}
 
+    /**
+     * showProgress, 默认不可取消。
+     */
     @JvmOverloads
     fun showProgress(msg: String?, loadingDrawableId: Int? = null) {
         if (mDialog == null) {
@@ -68,6 +72,34 @@ open class BaseActivity: AppCompatActivity() {
                 CommonProgressDialog.show(this, msg)
             } else {
                 CommonProgressDialog.show(this, msg, resources.getDrawable(loadingDrawableId, null))
+            }
+        } else if (mDialog?.isShowing == false) {
+            mDialog?.apply {
+                setLoadingMsg(msg)
+                loadingDrawableId?.let {
+                    setLoadingDrawable(resources.getDrawable(it, null))
+                }
+                show()
+            }
+        }
+    }
+
+    /**
+     * showProgress, 支持设置是否可以取消。
+     */
+    @JvmOverloads
+    fun showProgress(
+        msg: String?, loadingDrawableId: Int?,
+        cancelable: Boolean?, onCancelListener: DialogInterface.OnCancelListener? = null
+    ) {
+        if (mDialog == null) {
+            mDialog = if (loadingDrawableId == null) {
+                CommonProgressDialog.show(this, msg, null, cancelable, onCancelListener)
+            } else {
+                CommonProgressDialog.show(
+                    this, msg, resources.getDrawable(loadingDrawableId, null),
+                    cancelable, onCancelListener
+                )
             }
         } else if (mDialog?.isShowing == false) {
             mDialog?.apply {
