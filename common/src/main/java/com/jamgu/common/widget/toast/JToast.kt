@@ -10,6 +10,7 @@ import com.jamgu.common.thread.ThreadPool
 object JToast {
 
     @JvmOverloads
+    @JvmStatic
     fun showToast(context: Context?, msg: String?, showLength: Int = Toast.LENGTH_SHORT) {
         if (context == null || msg.isNullOrEmpty()) return
 
