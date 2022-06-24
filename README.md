@@ -15,11 +15,14 @@
 - statusBar 安卓状态栏管理工具
 - 计时器 RoughTimer(低精度)，VATimer(高精度)
 - ReflectHelper 反射工具类
+- KeyBoardUtils 键盘管理工具
+- PreferenceUtil Preference管理工具
+- StrokeTextView 精准描边TextView
 
 ##### Quick Start
 - 引用该库
 ```groovy
-    implementation "io.github.jamgudev:common:0.5.0"
+    implementation "io.github.jamgudev:common:0.6.0"
 ```
 - 然后在 Application 里初始化
 ```kotlin
