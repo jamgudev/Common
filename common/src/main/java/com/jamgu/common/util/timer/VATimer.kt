@@ -7,14 +7,12 @@ import android.os.HandlerThread
 import android.os.Process
 import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
-
-// private const val ONE_SECOND = 1000
-private const val DEFAULT_EXECUTION_TIMES_IN_SINGLE_LOOP = 4
+import java.util.concurrent.atomic.AtomicBoolean
 
 /**
  * Created by jamgu on 2022/02/11
  *
- * 基于ValueAnimator，比[RoughTimer]更精确的计时器
+ * 基于 ValueAnimator，比[RoughTimer]更精确的计时器
  */
 class VATimer {
     private var mTimer: ValueAnimator ? = null
@@ -23,6 +21,10 @@ class VATimer {
 
     init {
         mHandlerThread.start()
+    }
+
+    companion object {
+        private const val DEFAULT_EXECUTION_TIMES_IN_SINGLE_LOOP = 4
     }
 
     /**
@@ -57,7 +59,10 @@ class VATimer {
      * Timer 单次循环的执行总时长，计算公式为
      * mRepeatLength = internal (@see [start]) * [mExecutionTimesInSingleLoop]
      */
-    private var mRepeatLength = -1
+    private var mSingleRepeatDuration = -1
+
+    @Volatile
+    private var mReleased = AtomicBoolean(false)
 
     /**
      * @see [mTotalRepeatCount]
@@ -93,9 +98,9 @@ class VATimer {
     }
 
     private fun start(mission: (Int) -> Unit, internal: Int) {
-        mRepeatLength = computeRepeatLength(internal)
+        mSingleRepeatDuration = computeRepeatDuration(internal)
 
-        mTimer = ValueAnimator.ofInt(0, mRepeatLength)
+        mTimer = ValueAnimator.ofInt(0, mSingleRepeatDuration)
 
         mTimer?.apply {
             var lastVal = 0
@@ -114,9 +119,11 @@ class VATimer {
                         因此用executionTimesInSingleLoop变量控制
                          */
                         if (executionTimesInSingleLoop < mExecutionTimesInSingleLoop) {
-                            executionTimes++
-                            mission.invoke(executionTimes)
-                            executionTimesInSingleLoop++
+                            if (!mReleased.get()) {
+                                mission.invoke(executionTimes)
+                                executionTimes++
+                                executionTimesInSingleLoop++
+                            }
                         }
                         lastVal = curVal
                         passedTime = 0
@@ -126,7 +133,7 @@ class VATimer {
                         计算已经过去的时间，在下一个循环开始时用来控制
                          */
                         passedTime = if (curVal > lastVal ) curVal - lastVal else {
-                            mRepeatLength + curVal - lastVal
+                            mSingleRepeatDuration + curVal - lastVal
                         }
                     }
                 }
@@ -146,7 +153,7 @@ class VATimer {
             })
 
             interpolator = LinearInterpolator()
-            duration = mRepeatLength * 1L
+            duration = mSingleRepeatDuration * 1L
             repeatCount = mTotalRepeatCount
             start()
         }
@@ -161,6 +168,9 @@ class VATimer {
      */
     @JvmOverloads
     fun run(mission: (Int) -> Unit, internal: Int = 1) {
+        if (isReleased())
+            throw RuntimeException("You can not run VATimer in released state.")
+
         mHandlerThread.let {
             Handler(it.looper).post {
                 stop()
@@ -168,6 +178,8 @@ class VATimer {
             }
         }
     }
+
+    fun isReleased(): Boolean = mReleased.get()
 
     fun isRunning(): Boolean = mTimer?.isRunning ?: false
 
@@ -192,17 +204,20 @@ class VATimer {
     }
 
     /**
-     * 不用时记得调用此方法，终止looper
+     * 不用时记得调用此方法，终止线程
+     * VATimer 调用完该方法后，既完成使命，无法复用旧实例。
+     * 若需要使用，需重新创建VATimer对象。
      */
     fun release() {
         stop()
         mHandlerThread.quit()
+        mReleased.set(true)
     }
 
     /**
      * 计算单次循环的执行总时长
      */
-    private fun computeRepeatLength(internal: Int): Int {
+    private fun computeRepeatDuration(internal: Int): Int {
         return internal * mExecutionTimesInSingleLoop
     }
 }
