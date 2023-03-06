@@ -4,6 +4,10 @@ apply plugin: 'signing'
 Properties properties = new Properties()
 properties.load(rootProject.file('local.properties').newDataInputStream())
 
+
+def signId = properties.getProperty("signId")
+def signPassword = properties.getProperty("signPassword")
+def signRingFile = properties.getProperty("signRingFile")
 def ossrhUsername = properties.getProperty("ossrhUsername")
 def ossrhPassword = properties.getProperty("ossrhPassword")
 
@@ -69,9 +73,15 @@ afterEvaluate { project ->
                     println("$project publish local")
                     repository(url: rootProject.ext.mavenLocalUrl)
                 } else {
+                    signing.keyId=signId
+                    signing.password=signPassword
+                    signing.secretKeyRingFile=signRingFile
                     //签名
                     println("$project publish remote")
-                    signing { sign configurations.archives }
+                    signing {
+                        sign configurations.archives
+                    }
+
                     beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
                     repository(url: MAVEN_THIRD_PARTY) {

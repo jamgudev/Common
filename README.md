@@ -22,7 +22,7 @@
 ##### Quick Start
 - 引用该库
 ```groovy
-    implementation "io.github.jamgudev:common:0.6.0"
+    implementation "io.github.jamgudev:common:0.6.1"
 ```
 - 然后在 Application 里初始化
 ```kotlin

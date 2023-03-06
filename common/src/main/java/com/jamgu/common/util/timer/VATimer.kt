@@ -14,9 +14,9 @@ import java.util.concurrent.atomic.AtomicBoolean
  *
  * 基于 ValueAnimator，比[RoughTimer]更精确的计时器
  */
-class VATimer {
+class VATimer @JvmOverloads constructor(timerName: String = "") {
     private var mTimer: ValueAnimator ? = null
-    private var mHandlerThread: HandlerThread = HandlerThread("va_timer_thread",
+    private var mHandlerThread: HandlerThread = HandlerThread("va_timer_thread#$timerName",
         Process.THREAD_PRIORITY_BACKGROUND)
 
     init {
@@ -76,6 +76,15 @@ class VATimer {
      */
     fun setExecutionTimesInSingleLoop(executionTimes: Int) {
         mExecutionTimesInSingleLoop = executionTimes
+    }
+
+    /**
+     * 为 Timer 线程设置 UncaughtExceptionHandler
+     */
+    fun setUncaughtExceptionHandler(eh: Thread.UncaughtExceptionHandler? = null) {
+        if (mHandlerThread.isAlive) {
+            mHandlerThread.uncaughtExceptionHandler = eh
+        }
     }
 
     /**
