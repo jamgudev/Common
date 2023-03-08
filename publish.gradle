@@ -71,7 +71,10 @@ afterEvaluate { project ->
                 } else {
                     //签名
                     println("$project publish remote")
-                    signing { sign configurations.archives }
+                    signing {
+                        sign configurations.archives
+                    }
+
                     beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
                     repository(url: MAVEN_THIRD_PARTY) {
