@@ -1,10 +1,8 @@
 package com.jamgu.common.factory.mvp.widget.page
 
 import androidx.annotation.CallSuper
-import androidx.viewbinding.ViewBinding
 import com.jamgu.common.factory.mvp.presenter.BaseContract
 import com.jamgu.common.page.activity.BaseActivity
-import com.jamgu.common.page.activity.ViewBindingActivity
 
 /**
  * Created by jamgu on 2022/02/09

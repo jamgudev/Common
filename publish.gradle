@@ -4,6 +4,7 @@ apply plugin: 'signing'
 Properties properties = new Properties()
 properties.load(rootProject.file('local.properties').newDataInputStream())
 
+
 def ossrhUsername = properties.getProperty("ossrhUsername")
 def ossrhPassword = properties.getProperty("ossrhPassword")
 
