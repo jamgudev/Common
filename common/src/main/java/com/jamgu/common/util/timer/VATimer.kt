@@ -14,10 +14,10 @@ import java.util.concurrent.atomic.AtomicBoolean
  *
  * 基于 ValueAnimator，比[RoughTimer]更精确的计时器
  */
-class VATimer @JvmOverloads constructor(timerName: String = "") {
+class VATimer @JvmOverloads constructor(timerName: String = "", threadPriority: Int = Process.THREAD_PRIORITY_BACKGROUND) {
     private var mTimer: ValueAnimator ? = null
-    private var mHandlerThread: HandlerThread = HandlerThread("va_timer_thread#$timerName",
-        Process.THREAD_PRIORITY_BACKGROUND)
+    private var mHandlerThread: HandlerThread = HandlerThread("VAT_Thread#$timerName",
+        threadPriority)
 
     init {
         mHandlerThread.start()

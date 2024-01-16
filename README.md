@@ -18,13 +18,14 @@
 - KeyBoardUtils 键盘管理工具
 - PreferenceUtil Preference管理工具
 - StrokeTextView 精准描边TextView
+- viewBinding 视图binding工具
 
 ##### Quick Start
 - 引用该库
 ```groovy
-    implementation "io.github.jamgudev:common:0.6.0"
+    implementation "io.github.jamgudev:common:0.6.2"
 ```
-- 然后在 Application 里初始化
+- 然后在 Application.onCreate() 里初始化
 ```kotlin
     Common.instance.init(this)
 ```
